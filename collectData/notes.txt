@@ -1,0 +1,22 @@
+Alur Kerja Program collectData
+
+1. Inisialisasi
+Kode program dimulai dengan menginisialisasi parameter API YouTube, koneksi ke MongoDB, dan variabel
+yang dibutuhkan seperti video_id dan max_results.
+
+2. Mengambil State Terakhir
+Program mengambil token halaman terakhir dari database untuk melanjutkan pengambilan komentar
+dari tempat terakhir berhenti.
+
+3.Mengambil Komentar
+- Program mengirim permintaan ke API YouTube untuk mengambil komentar dari video.
+- Untuk setiap komentar utama, program memeriksa apakah komentar tersebut sudah ada di database. Jika belum, komentar disimpan.
+- Jika komentar utama memiliki balasan, balasan tersebut diambil dan disimpan dengan cara yang sama.
+
+4. Menangani Kesalahan
+-Program menangani beberapa jenis kesalahan seperti HttpError, AutoReconnect, dan TimeoutError. Untuk kesalahan sementara, program akan mencoba kembali setelah menunggu beberapa detik.
+
+5. Menyimpan State
+Setelah setiap halaman komentar berhasil diambil, token halaman berikutnya disimpan ke dalam database untuk memastikan program dapat melanjutkan dari tempat terakhir berhenti jika terjadi kesalahan.
+
+Dengan alur ini, program dapat mengambil komentar dari YouTube secara efisien dan dapat melanjutkan dari tempat terakhir berhenti tanpa menduplikasi komentar yang sudah diambil sebelumnya.
